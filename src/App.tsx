@@ -3,7 +3,7 @@
 // import {Home} from './pages/home';
 // import {About} from './pages/about';
 
-import { NavBar } from './components/navbar/Navbar';
+import { NavBar } from './components/navbar/navbar';
 
 function App() {
   return (
