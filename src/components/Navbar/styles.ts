@@ -3,43 +3,53 @@ import styled from "styled-components";
 export const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
   padding: 2rem 1rem;
 `;
 
 export const NavButtonsContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 export const MenuButton = styled.button`
   background-color: #9E9E9E;
-  padding: 1rem;
-  width: 2.56rem;
-  height: 2.56rem;
+  padding: 0.5rem;
+  /* width: 2.56rem;
+  height: 2.56rem; */
   border: none;
   border-radius: 8px;
+  
+  svg{
+  }
 `;
 
 export const ButtonAddTask = styled.button`
   background-color: #1294F2;
   padding: 7px 6px;
-  margin: 0 0 0 0.5rem;
   border: none;
   border-radius: 8px;
   width: 5.87rem;
-  height: 2.56rem;
+  height: 2.87rem;
+  font-size: 16px;
+  width: fit-content;
+  font-weight: bold;
 `;
 
 export const ActualDateContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 7px;
+  font-weight: bold;
 `;
 
-export const ActualDayString = styled.span`
-  font-size: 20px;
+export const ActualDayString = styled.div`
+  font-size: 15.5px;
 `;
 
-export const ActualDayNumber = styled.span`
-  font-size: 40px;
+export const ActualDayNumber = styled.div`
+  font-size: 48px;
 `;
