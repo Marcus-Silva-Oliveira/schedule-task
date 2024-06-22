@@ -1,20 +1,17 @@
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import {NavBar} from './components/navbar';
-// import {Home} from './pages/home';
-// import {About} from './pages/about';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NavBar } from './components/navbar/navbar';
+import ScheduleScreen from './pages/schedule/schedule';
+import TaskScreen from './pages/task/task';
 
 function App() {
   return (
-    // <BrowserRouter>
-    //   <NavBar />
-    //     <Routes>
-    //       <Route index element={<Home />} />
-    //       <Route path="about" element={<About />} />
-    //     </Routes>
-    // </BrowserRouter>
-    <NavBar />
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route index element={<ScheduleScreen />} />
+        <Route path="about" element={<TaskScreen />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
