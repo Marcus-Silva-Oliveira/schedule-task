@@ -1,56 +1,60 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-
-export const AllTasksContainer = styled.div`
+export const TasksContainer = styled.div`
   display: flex;
   max-width: 100%;
   height: 90px;
   align-items: center;
 `;
 
-export const TaskContainer = styled.button`
+export const Taskbucket = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 4rem;
-  background-color: #A6A6A6;
-  border: none;
+  height: auto;
+  background-color: #a6a6a6;
   border-radius: 8px;
   padding: 15px 10px;
-  margin: 0 2rem;
-  flex-wrap: nowrap;
+  margin: 0 1.2rem;
+  gap: 1rem;
+`;
+
+export const TaskTitle = styled.button`
+  display: flex;
+  max-width: 80%;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
   font-size: 16px;
+
+  img {
+    width: 35px;
+  }
 `;
 
-export const TaskTitleContainer = styled.div`
+export const TaskButtonsBucket = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem 0 0.5rem;
-  gap: 1rem;
+  gap: 0.5rem;
+  /* margin-right: 1rem; */
 `;
 
-export const TaskButtonsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-right: 1rem;
-`;
-
-export const TaskCheck = styled.button`
+export const TaskDone = styled.button`
   display: flex;
   border: none;
-  background-color: #08AA49;
+  background-color: #08aa49;
   border-radius: 8px;
-  padding: 3px;
+  padding: 7px;
 `;
 
 export const TaskDelete = styled.button`
   display: flex;
   border: none;
-  background-color: #CE3535;
+  background-color: #ce3535;
   border-radius: 8px;
-  padding: 3px;
+  padding: 7px;
 `;
