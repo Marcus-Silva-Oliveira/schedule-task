@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavContainer = styled.nav`
   display: flex;
@@ -15,19 +15,19 @@ export const NavButtonsContainer = styled.div`
 `;
 
 export const MenuButton = styled.button`
-  background-color: #9E9E9E;
+  background-color: #9e9e9e;
   padding: 0.5rem;
   /* width: 2.56rem;
   height: 2.56rem; */
   border: none;
   border-radius: 8px;
-  
-  svg{
+
+  svg {
   }
 `;
 
 export const ButtonAddTask = styled.button`
-  background-color: #1294F2;
+  background-color: #1294f2;
   padding: 7px 6px;
   border: none;
   border-radius: 8px;
@@ -46,10 +46,10 @@ export const ActualDateContainer = styled.div`
   font-weight: bold;
 `;
 
-export const ActualDayString = styled.div`
+export const ActualDayString = styled.span`
   font-size: 15.5px;
 `;
 
-export const ActualDayNumber = styled.div`
+export const ActualDayNumber = styled.span`
   font-size: 48px;
 `;
