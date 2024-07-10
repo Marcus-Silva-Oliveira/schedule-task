@@ -5,7 +5,6 @@ import * as S from './styles';
 
 export const NavBar: React.FC = () => {
   const date: Date = new Date();
-  const day: number = date.getDay();
   const weekDay = [
     'Domingo',
     'Segunda-feira',
@@ -15,7 +14,7 @@ export const NavBar: React.FC = () => {
     'Sexta-feira',
     'Sábado',
   ];
-  const nameWeekDay = weekDay[day];
+  const nameWeekDay = weekDay[date.getDay()];
 
   return (
     <S.NavContainer>
@@ -35,7 +34,7 @@ export const NavBar: React.FC = () => {
 
       <S.ActualDateContainer>
         <S.ActualDayString>{nameWeekDay}</S.ActualDayString>
-        <S.ActualDayNumber>{date.getDay()}</S.ActualDayNumber>
+        <S.ActualDayNumber>{date.getDate()}</S.ActualDayNumber>
       </S.ActualDateContainer>
     </S.NavContainer>
   );
