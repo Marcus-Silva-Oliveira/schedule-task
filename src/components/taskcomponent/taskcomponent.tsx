@@ -13,8 +13,8 @@ enum TaskType {
 }
 
 export interface Task {
-  id: number;
-  Title: string;
+  id?: number;
+  Title?: string;
   Assign?: string;
   startDate?: Date;
   endDate?: Date;
