@@ -71,16 +71,23 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
   //Functions:
 
-  const getTaskType: TaskType = () => {
+  //Check Definition
+  const getTaskType = (): string => {
+    let type: string = '';
+
     if (analysisChecked) {
-      return analysisChecked;
+      type = 'Análise';
     } else if (problemChecked) {
-      return problemChecked;
+      type = 'Problema';
     } else if (supportChecked) {
-      return supportChecked;
+      type = 'Suporte';
+    } else if (testChecked) {
+      type = 'Teste';
     } else {
-      return testChecked;
+      type = '';
     }
+
+    return type;
   };
 
   //Clear Fields
@@ -91,35 +98,27 @@ export const TaskPage: React.FC = () => {
     setInputEndDate('');
     setInputDescription('');
     setAnalysisChecked(false);
+    setProblemChecked(false);
+    setSupportChecked(false);
+    setTestChecked(false);
   };
-
-  //-----------------------------------------------
-
-  // const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (event.key === 'Enter') {
-  //     // Aqui você pode fazer o que quiser com o valor digitado
-  //     console.log(inputTitle);
-  //     // Por exemplo, limpar o input:
-  //     setInputTitle('');
-  //   }
-  // };
 
   //-----------------------------------------------
   //Types
 
-  enum TaskType {
-    analysis,
-    problem,
-    suport,
-    test,
-  }
+  // enum TaskType {
+  //   analysis,
+  //   problem,
+  //   suport,
+  //   test,
+  // }
 
   interface Task {
     Title: string;
     Assign: string;
     StartDate?: Date | string | number;
     EndDate?: Date | string | number;
-    TaskType?: TaskType;
+    TaskType?: string;
     Description?: string;
   }
 
@@ -148,7 +147,6 @@ export const TaskPage: React.FC = () => {
           type="text"
           value={inputTitle}
           onChange={handleInputTitleChange}
-          // onKeyPress={handleKeyPress}
         />
         <S.Input
           placeholder="Responsável:"
