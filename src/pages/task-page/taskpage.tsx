@@ -72,22 +72,23 @@ export const TaskPage: React.FC = () => {
   //Functions:
 
   //Check Definition
-  const getTaskType = (): string => {
-    let type: string = '';
-
+  const getTaskType = (
+    analysisChecked: boolean,
+    problemChecked: boolean,
+    supportChecked: boolean,
+    testChecked: boolean,
+  ): TaskType => {
     if (analysisChecked) {
-      type = 'Análise';
+      return TaskType.Analysis;
     } else if (problemChecked) {
-      type = 'Problema';
+      return TaskType.Problem;
     } else if (supportChecked) {
-      type = 'Suporte';
+      return TaskType.Support;
     } else if (testChecked) {
-      type = 'Teste';
+      return TaskType.Test;
     } else {
-      type = '';
+      return TaskType.Empty;
     }
-
-    return type;
   };
 
   //Clear Fields
@@ -106,19 +107,20 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
   //Types
 
-  // enum TaskType {
-  //   analysis,
-  //   problem,
-  //   suport,
-  //   test,
-  // }
+  enum TaskType {
+    Analysis = 'Análise',
+    Problem = 'Problema',
+    Support = 'Suporte',
+    Test = 'Teste',
+    Empty = 'none',
+  }
 
   interface Task {
     Title: string;
     Assign: string;
     StartDate?: Date | string | number;
     EndDate?: Date | string | number;
-    TaskType?: string;
+    TaskType?: TaskType;
     Description?: string;
   }
 
@@ -130,7 +132,12 @@ export const TaskPage: React.FC = () => {
     Assign: inputAssign,
     StartDate: inputStartDate,
     EndDate: inputEndDate,
-    TaskType: getTaskType(),
+    TaskType: getTaskType(
+      analysisChecked,
+      problemChecked,
+      supportChecked,
+      testChecked,
+    ),
     Description: inputDescription,
   };
 
