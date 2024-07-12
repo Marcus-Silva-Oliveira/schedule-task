@@ -34,11 +34,12 @@ export const Input = styled.input`
 
 export const DateAndTypeContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem 1rem;
+  margin: 0 1rem 0 1rem;
   margin-top: 1rem;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export const DateContainer = styled.div`

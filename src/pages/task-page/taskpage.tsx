@@ -71,15 +71,23 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
   //Functions:
 
-  const getTaskType: TaskType = () => {
+  //Check Definition
+  const getTaskType = (
+    analysisChecked: boolean,
+    problemChecked: boolean,
+    supportChecked: boolean,
+    testChecked: boolean,
+  ): TaskType => {
     if (analysisChecked) {
-      return analysisChecked;
+      return TaskType.Analysis;
     } else if (problemChecked) {
-      return problemChecked;
+      return TaskType.Problem;
     } else if (supportChecked) {
-      return supportChecked;
+      return TaskType.Support;
+    } else if (testChecked) {
+      return TaskType.Test;
     } else {
-      return testChecked;
+      return TaskType.Empty;
     }
   };
 
@@ -91,27 +99,20 @@ export const TaskPage: React.FC = () => {
     setInputEndDate('');
     setInputDescription('');
     setAnalysisChecked(false);
+    setProblemChecked(false);
+    setSupportChecked(false);
+    setTestChecked(false);
   };
-
-  //-----------------------------------------------
-
-  // const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (event.key === 'Enter') {
-  //     // Aqui você pode fazer o que quiser com o valor digitado
-  //     console.log(inputTitle);
-  //     // Por exemplo, limpar o input:
-  //     setInputTitle('');
-  //   }
-  // };
 
   //-----------------------------------------------
   //Types
 
   enum TaskType {
-    analysis,
-    problem,
-    suport,
-    test,
+    Analysis = 'Análise',
+    Problem = 'Problema',
+    Support = 'Suporte',
+    Test = 'Teste',
+    Empty = 'none',
   }
 
   interface Task {
@@ -131,7 +132,12 @@ export const TaskPage: React.FC = () => {
     Assign: inputAssign,
     StartDate: inputStartDate,
     EndDate: inputEndDate,
-    TaskType: getTaskType(),
+    TaskType: getTaskType(
+      analysisChecked,
+      problemChecked,
+      supportChecked,
+      testChecked,
+    ),
     Description: inputDescription,
   };
 
@@ -148,7 +154,6 @@ export const TaskPage: React.FC = () => {
           type="text"
           value={inputTitle}
           onChange={handleInputTitleChange}
-          // onKeyPress={handleKeyPress}
         />
         <S.Input
           placeholder="Responsável:"
