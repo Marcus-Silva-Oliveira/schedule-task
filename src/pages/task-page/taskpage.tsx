@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { format } from 'date-fns';
 
 import * as S from './styles';
@@ -70,6 +70,16 @@ export const TaskPage: React.FC = () => {
 
   //-----------------------------------------------
   //Functions:
+
+  //Active submit button
+  const activeCreateTaskButton = () => {
+    if (inputTitle.length === 0 && inputDescription.length === 0) {
+      console.log('O título não pode ser vazio');
+    } else {
+      handleClickCreateButton();
+      console.log(dataForm);
+    }
+  };
 
   //Check Definition
   const getTaskType = (
@@ -225,10 +235,11 @@ export const TaskPage: React.FC = () => {
 
       <S.ButtonsContainer>
         <S.CreateTaskButton
+          type="submit"
+          disabled
           onClick={() => {
             //Change to send the data
-            console.log(dataForm);
-            handleClickCreateButton();
+            activeCreateTaskButton();
           }}
         >
           Criar tarefa
