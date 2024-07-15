@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { format } from 'date-fns';
 
 import * as S from './styles';
@@ -7,6 +7,7 @@ export const TaskPage: React.FC = () => {
   // const currentDate: string | Date | number = new Date();
   // const date = format(currentDate, 'dd-MM-yyyy');
 
+  //useState
   const [inputTitle, setInputTitle] = useState('');
   const [inputAssign, setInputAssign] = useState('');
   const [inputStartDate, setInputStartDate] = useState('');
@@ -16,6 +17,32 @@ export const TaskPage: React.FC = () => {
   const [problemChecked, setProblemChecked] = useState(false);
   const [supportChecked, setSupportChecked] = useState(false);
   const [testChecked, setTestChecked] = useState(false);
+  const [createTaskActive, setCreateTaskActive] = useState(false);
+
+  //useEffect
+  useEffect(() => {
+    if (
+      inputTitle.trim() !== '' &&
+      inputAssign.trim() !== '' &&
+      inputStartDate.trim() !== '' &&
+      inputEndDate.trim() !== '' &&
+      inputDescription.trim() !== ''
+    ) {
+      setCreateTaskActive(true);
+    }
+  }, [inputTitle, inputAssign, inputStartDate, inputEndDate, inputDescription]);
+
+  useEffect(() => {
+    if (
+      inputTitle.trim() === '' ||
+      inputAssign.trim() === '' ||
+      inputStartDate.trim() === '' ||
+      inputEndDate.trim() === '' ||
+      inputDescription.trim() === ''
+    ) {
+      setCreateTaskActive(false);
+    }
+  }, [inputTitle, inputAssign, inputStartDate, inputEndDate, inputDescription]);
 
   //-----------------------------------------------
 
@@ -42,6 +69,11 @@ export const TaskPage: React.FC = () => {
   const handleInputEndDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputEndDate(event.target.value);
   };
+
+  //-----------------------------------------------
+
+  //Variables
+  const isActive: boolean = createTaskActive;
 
   //-----------------------------------------------
 
@@ -73,8 +105,23 @@ export const TaskPage: React.FC = () => {
 
   //Active submit button
   const activeCreateTaskButton = () => {
-    if (inputTitle.length === 0 && inputDescription.length === 0) {
-      console.log('O título não pode ser vazio');
+    if (inputTitle === '') {
+      alert('É preciso preencher o campo Título');
+    } else if (inputAssign === '') {
+      alert('É preciso preencher o campo Responsável');
+    } else if (inputStartDate === '') {
+      alert('É preciso preencher o campo Data de criação');
+    } else if (inputEndDate === '') {
+      alert('É preciso preencher o campo Data limite');
+    } else if (
+      analysisChecked === false &&
+      problemChecked === false &&
+      supportChecked === false &&
+      testChecked === false
+    ) {
+      alert('É preciso selecionar um dos tipos');
+    } else if (inputDescription === '') {
+      alert('É preciso preencher o campo Descrição');
     } else {
       handleClickCreateButton();
       console.log(dataForm);
@@ -115,6 +162,7 @@ export const TaskPage: React.FC = () => {
   };
 
   //-----------------------------------------------
+
   //Types
 
   enum TaskType {
@@ -236,13 +284,13 @@ export const TaskPage: React.FC = () => {
       <S.ButtonsContainer>
         <S.CreateTaskButton
           type="submit"
-          disabled
+          isActive={isActive}
           onClick={() => {
             //Change to send the data
             activeCreateTaskButton();
           }}
         >
-          Criar tarefa
+          {isActive ? 'Criar Tarefa' : 'Preencha os dados'}
         </S.CreateTaskButton>
       </S.ButtonsContainer>
     </>

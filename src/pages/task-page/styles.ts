@@ -128,9 +128,16 @@ export const ButtonsContainer = styled.section`
   margin-bottom: 2rem;
 `;
 
-export const CreateTaskButton = styled.button`
-  background-color: #1294f2;
+interface CreateTaskButtonProps {
+  isActive: boolean;
+}
+export const CreateTaskButton = styled.button<CreateTaskButtonProps>`
+  background-color: ${(props) => (props.isActive ? '#1294f2' : 'gray')};
   color: #ffffff;
+  &:hover {
+    cursor: ${(props) => (props.isActive ? 'pointer' : 'default')};
+    filter: brightness(${(props) => (props.isActive ? '1.09' : '1')});
+  }
   font-weight: bold;
   border: none;
   border-radius: 8px;

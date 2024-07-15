@@ -74,8 +74,3 @@ button:focus-visible {
   font-optical-sizing: auto;
   font-style: normal;
 }
-
-body button:hover {
-  cursor: pointer;
-  filter: brightness(1.05);
-}
