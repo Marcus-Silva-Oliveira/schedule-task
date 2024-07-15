@@ -1,33 +1,17 @@
 import { ReactElement } from 'react';
-
-import DatePickerComponent from '../../components/datepicker/datepicker';
+import { useTasks } from '../../api/task/api';
+import { Task } from '../../api/task/type';
 
 const ScheduleScreen = (): ReactElement => {
-  const tasks: any = [
-    {
-      title: 'Reunião com cliente',
+  const { data, isLoading } = useTasks({
+    onSuccess: (data: Task[]): void => {
+      console.log('Resultado - ', data);
     },
-    {
-      title: 'Mandar E-mail para o banco',
+    onError: (): void => {
+      console.log('Error ao tratar a requisição');
     },
-    {
-      title: 'Finalizar proposta de marketing',
-    },
-    {
-      title: 'Jantar com espora',
-    },
-  ];
-
-  const TasksContainer = (): React.ReactElement =>
-    tasks.map((task: any) => <>{task.title}</>);
-
-  return (
-    <div>
-      <DatePickerComponent />
-      <hr />
-      <TasksContainer />
-    </div>
-  );
+  });
+  return isLoading ? <>Carregando</> : <>Dados OK</>;
 };
 
 export default ScheduleScreen;

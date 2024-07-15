@@ -1,8 +1,21 @@
 // import { Link } from 'react-router-dom';
 
+import React from 'react';
 import * as S from './styles';
 
-export const NavBar = () => {
+export const NavBar: React.FC = () => {
+  const date: Date = new Date();
+  const weekDay = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado',
+  ];
+  const nameWeekDay = weekDay[date.getDay()];
+
   return (
     <S.NavContainer>
       <S.NavButtonsContainer>
@@ -20,12 +33,8 @@ export const NavBar = () => {
       </S.NavButtonsContainer>
 
       <S.ActualDateContainer>
-        <S.ActualDayString>
-          <p>Quinta-feira</p>
-        </S.ActualDayString>
-        <S.ActualDayNumber>
-          <p>20</p>
-        </S.ActualDayNumber>
+        <S.ActualDayString>{nameWeekDay}</S.ActualDayString>
+        <S.ActualDayNumber>{date.getDate()}</S.ActualDayNumber>
       </S.ActualDateContainer>
     </S.NavContainer>
   );
