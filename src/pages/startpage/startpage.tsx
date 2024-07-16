@@ -3,7 +3,7 @@
 import React from 'react';
 import * as S from './styles';
 
-export const MainPage: React.FC = () => {
+export const StartPage: React.FC = () => {
   return (
     <S.Container>
       <S.TitleContainer>
