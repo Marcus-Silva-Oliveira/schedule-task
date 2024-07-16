@@ -113,7 +113,7 @@ export const DescritionInput = styled.textarea`
   border-radius: 8px;
   min-height: 15rem;
   max-height: 22rem;
-  width: 100%;
+  max-width: 100%;
   background-color: #eeeeee;
   font-size: 18px;
   padding: 8px;
