@@ -3,6 +3,29 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './styles';
 
+//-----------------------------------------------
+
+//Types
+
+enum TaskType {
+  Analysis = 'Análise',
+  Problem = 'Problema',
+  Support = 'Suporte',
+  Test = 'Teste',
+  Empty = 'none',
+}
+
+interface Task {
+  Title: string;
+  Assign: string;
+  StartDate?: Date | string | number;
+  EndDate?: Date | string | number;
+  TaskType?: TaskType;
+  Description?: string;
+}
+
+//-----------------------------------------------
+
 export const TaskPage: React.FC = () => {
   // const currentDate: string | Date | number = new Date();
   // const date = format(currentDate, 'dd-MM-yyyy');
@@ -160,27 +183,6 @@ export const TaskPage: React.FC = () => {
     setSupportChecked(false);
     setTestChecked(false);
   };
-
-  //-----------------------------------------------
-
-  //Types
-
-  enum TaskType {
-    Analysis = 'Análise',
-    Problem = 'Problema',
-    Support = 'Suporte',
-    Test = 'Teste',
-    Empty = 'none',
-  }
-
-  interface Task {
-    Title: string;
-    Assign: string;
-    StartDate?: Date | string | number;
-    EndDate?: Date | string | number;
-    TaskType?: TaskType;
-    Description?: string;
-  }
 
   //-----------------------------------------------
   //Variables to send:
