@@ -41,6 +41,7 @@ export const TaskPage: React.FC = () => {
   const [supportChecked, setSupportChecked] = useState(false);
   const [testChecked, setTestChecked] = useState(false);
   const [createTaskActive, setCreateTaskActive] = useState(false);
+  const [isChecked, setIsChecked] = useState<TaskType>(TaskType.Empty);
 
   //useEffect
   useEffect(() => {
@@ -76,13 +77,13 @@ export const TaskPage: React.FC = () => {
     setInputEndDate(event.target.value);
   //-----------------------------------------------
 
-  //Variables
+  //Global variables
   const isActive: boolean = createTaskActive;
 
   //-----------------------------------------------
 
   //Input Check
-  const handleAnalysisCkeckEnable = () => setAnalysisChecked(!analysisChecked);
+  const handleCkeckEnable = () => setAnalysisChecked(!analysisChecked);
   const handleProblemCkeckEnable = () => setProblemChecked(!problemChecked);
   const handleSupportCkeckEnable = () => setSupportChecked(!supportChecked);
   const handleTestCkeckEnable = () => setTestChecked(!testChecked);
@@ -97,23 +98,34 @@ export const TaskPage: React.FC = () => {
 
   //Active submit button
   const activeCreateTaskButton = () => {
-    if (inputTitle === '') {
-      alert('É preciso preencher o campo Título');
-    } else if (inputAssign === '') {
-      alert('É preciso preencher o campo Responsável');
-    } else if (inputStartDate === '') {
-      alert('É preciso preencher o campo Data de criação');
-    } else if (inputEndDate === '') {
-      alert('É preciso preencher o campo Data limite');
-    } else if (
-      analysisChecked === false &&
-      problemChecked === false &&
-      supportChecked === false &&
-      testChecked === false
-    ) {
-      alert('É preciso selecionar um dos tipos');
-    } else if (inputDescription === '') {
-      alert('É preciso preencher o campo Descrição');
+    const dataForm: Task = {
+      Title: inputTitle,
+      Assign: inputAssign,
+      StartDate: inputStartDate,
+      EndDate: inputEndDate,
+      TaskType: getTaskType(
+        analysisChecked,
+        problemChecked,
+        supportChecked,
+        testChecked,
+      ),
+      Description: inputDescription,
+    };
+
+    const handleClickCreateButton = () => {
+      setInputTitle('');
+      setInputAssign('');
+      setInputStartDate('');
+      setInputEndDate('');
+      setInputDescription('');
+      setAnalysisChecked(false);
+      setProblemChecked(false);
+      setSupportChecked(false);
+      setTestChecked(false);
+    };
+
+    if (createTaskActive === false) {
+      alert('Preencha todos os campos');
     } else {
       handleClickCreateButton();
       console.log(dataForm);
@@ -140,51 +152,21 @@ export const TaskPage: React.FC = () => {
     }
   };
 
-  //Clear Fields
-  const handleClickCreateButton = () => {
-    setInputTitle('');
-    setInputAssign('');
-    setInputStartDate('');
-    setInputEndDate('');
-    setInputDescription('');
-    setAnalysisChecked(false);
-    setProblemChecked(false);
-    setSupportChecked(false);
-    setTestChecked(false);
-  };
-
-  //-----------------------------------------------
-  //Variables to send:
-
-  const dataForm: Task = {
-    Title: inputTitle,
-    Assign: inputAssign,
-    StartDate: inputStartDate,
-    EndDate: inputEndDate,
-    TaskType: getTaskType(
-      analysisChecked,
-      problemChecked,
-      supportChecked,
-      testChecked,
-    ),
-    Description: inputDescription,
-  };
-
   //-----------------------------------------------
 
   return (
     <>
       <S.TitleContainer>
-        <S.PageTitle>Tarefa</S.PageTitle>
+        <h1>Tarefa</h1>
       </S.TitleContainer>
       <S.InputContainer>
-        <S.Input
+        <input
           placeholder="Título:"
           type="text"
           value={inputTitle}
           onChange={handleInputTitleChange}
         />
-        <S.Input
+        <input
           placeholder="Responsável:"
           type="text"
           value={inputAssign}
@@ -193,60 +175,68 @@ export const TaskPage: React.FC = () => {
       </S.InputContainer>
 
       <S.DateAndTypeContainer>
-        <S.DateContainer>
-          <S.Span>Data de criação:</S.Span>
-          <S.InputDate
+        <div>
+          <span>Data de criação:</span>
+          <input
             type="date"
             value={inputStartDate}
             onChange={handleInputStartDate}
           />
-          <S.Span>Data limite:</S.Span>
-          <S.InputDate
+          <span>Data limite:</span>
+          <input
             type="date"
             value={inputEndDate}
             onChange={handleInputEndDate}
           />
-        </S.DateContainer>
-        <S.TypeContainer>
-          <S.TypeList>
-            <S.TypeListIems style={{ color: '#8ED05A' }}>
-              <S.Checkbox
+        </div>
+        <div>
+          <ul>
+            <li style={{ color: '#8ED05A' }}>
+              <input
+                type="checkbox"
+                value={TaskType.Analysis}
                 checked={analysisChecked}
-                onChange={handleAnalysisCkeckEnable}
+                onChange={handleCkeckEnable}
               />
               Análise
-            </S.TypeListIems>
+            </li>
 
-            <S.TypeListIems style={{ color: '#EB9734' }}>
-              <S.Checkbox
+            <li style={{ color: '#EB9734' }}>
+              <input
+                type="checkbox"
+                value={TaskType.Problem}
                 checked={problemChecked}
                 onChange={handleProblemCkeckEnable}
               />
               Problema
-            </S.TypeListIems>
+            </li>
 
-            <S.TypeListIems style={{ color: '#1641D9' }}>
-              <S.Checkbox
+            <li style={{ color: '#1641D9' }}>
+              <input
+                type="checkbox"
+                value={TaskType.Support}
                 checked={supportChecked}
                 onChange={handleSupportCkeckEnable}
               />
               Suporte
-            </S.TypeListIems>
-            <S.TypeListIems style={{ color: '#b80202' }}>
-              <S.Checkbox
+            </li>
+            <li style={{ color: '#b80202' }}>
+              <input
+                type="checkbox"
+                value={TaskType.Test}
                 checked={testChecked}
                 onChange={handleTestCkeckEnable}
               />
               Teste
-            </S.TypeListIems>
-          </S.TypeList>
-        </S.TypeContainer>
+            </li>
+          </ul>
+        </div>
       </S.DateAndTypeContainer>
 
       <S.DescritionContainer>
-        <S.DescriptionTitle>Descrição:</S.DescriptionTitle>
+        <h2>Descrição:</h2>
 
-        <S.DescritionInput
+        <textarea
           value={inputDescription}
           onChange={handleInputDescriptionChange}
         />
