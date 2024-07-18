@@ -44,27 +44,19 @@ export const TaskPage: React.FC = () => {
 
   //useEffect
   useEffect(() => {
-    if (
+    const buttonCreateTaskCondition =
       inputTitle.trim() !== '' &&
       inputAssign.trim() !== '' &&
       inputStartDate.trim() !== '' &&
       inputEndDate.trim() !== '' &&
-      inputDescription.trim() !== ''
-    ) {
-      setCreateTaskActive(true);
-    }
-  }, [inputTitle, inputAssign, inputStartDate, inputEndDate, inputDescription]);
-
-  useEffect(() => {
-    if (
-      inputTitle.trim() === '' ||
+      inputDescription.trim() !== '';
+    inputTitle.trim() === '' ||
       inputAssign.trim() === '' ||
       inputStartDate.trim() === '' ||
       inputEndDate.trim() === '' ||
-      inputDescription.trim() === ''
-    ) {
-      setCreateTaskActive(false);
-    }
+      inputDescription.trim() === '';
+
+    setCreateTaskActive(buttonCreateTaskCondition);
   }, [inputTitle, inputAssign, inputStartDate, inputEndDate, inputDescription]);
 
   //-----------------------------------------------
