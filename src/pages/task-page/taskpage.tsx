@@ -62,29 +62,18 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
 
   //Input Title
-  const handleInputTitleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleInputTitleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInputTitle(event.target.value);
-  };
-
   //Input Assign
   const handleInputAssignChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setInputAssign(event.target.value);
-  };
-
+  ) => setInputAssign(event.target.value);
   //Input StartDate
-  const handleInputStartDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputStartDate = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInputStartDate(event.target.value);
-  };
-
   //Input EndDate
-  const handleInputEndDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputEndDate = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInputEndDate(event.target.value);
-  };
-
   //-----------------------------------------------
 
   //Variables
@@ -93,28 +82,16 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
 
   //Input Check
-  const handleAnalysisCkeckEnable = () => {
-    setAnalysisChecked(!analysisChecked);
-  };
-  const handleProblemCkeckEnable = () => {
-    setProblemChecked(!problemChecked);
-  };
-  const handleSupportCkeckEnable = () => {
-    setSupportChecked(!supportChecked);
-  };
-  const handleTestCkeckEnable = () => {
-    setTestChecked(!testChecked);
-  };
-
+  const handleAnalysisCkeckEnable = () => setAnalysisChecked(!analysisChecked);
+  const handleProblemCkeckEnable = () => setProblemChecked(!problemChecked);
+  const handleSupportCkeckEnable = () => setSupportChecked(!supportChecked);
+  const handleTestCkeckEnable = () => setTestChecked(!testChecked);
   //-----------------------------------------------
 
   //Input Description
   const handleInputDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setInputDescription(event.target.value);
-  };
-
+  ) => setInputDescription(event.target.value);
   //-----------------------------------------------
   //Functions:
 
