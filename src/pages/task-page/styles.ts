@@ -112,6 +112,7 @@ export const DescritionContainer = styled.section`
     border-radius: 8px;
     min-height: 15rem;
     max-height: 22rem;
+    min-width: 100%;
     max-width: 100%;
     background-color: #eeeeee;
     font-size: 18px;

@@ -8,11 +8,11 @@ import * as S from './styles';
 //Types
 
 enum TaskType {
-  Analysis = 'Análise',
-  Problem = 'Problema',
-  Support = 'Suporte',
-  Test = 'Teste',
-  Empty = 'none',
+  Analysis = 'Analysis',
+  Problem = 'Problem',
+  Support = 'Support',
+  Test = 'Test',
+  none = 'none',
 }
 
 interface Task {
@@ -36,12 +36,8 @@ export const TaskPage: React.FC = () => {
   const [inputStartDate, setInputStartDate] = useState('');
   const [inputEndDate, setInputEndDate] = useState('');
   const [inputDescription, setInputDescription] = useState('');
-  const [analysisChecked, setAnalysisChecked] = useState(false);
-  const [problemChecked, setProblemChecked] = useState(false);
-  const [supportChecked, setSupportChecked] = useState(false);
-  const [testChecked, setTestChecked] = useState(false);
+  const [inputTaskType, setInputTaskType] = useState<TaskType>(TaskType.none);
   const [createTaskActive, setCreateTaskActive] = useState(false);
-  const [isChecked, setIsChecked] = useState<TaskType>(TaskType.Empty);
 
   //useEffect
   useEffect(() => {
@@ -50,15 +46,18 @@ export const TaskPage: React.FC = () => {
       inputAssign.trim() !== '' &&
       inputStartDate.trim() !== '' &&
       inputEndDate.trim() !== '' &&
-      inputDescription.trim() !== '';
-    inputTitle.trim() === '' ||
-      inputAssign.trim() === '' ||
-      inputStartDate.trim() === '' ||
-      inputEndDate.trim() === '' ||
-      inputDescription.trim() === '';
+      inputDescription.trim() !== '' &&
+      inputTaskType !== TaskType.none;
 
     setCreateTaskActive(buttonCreateTaskCondition);
-  }, [inputTitle, inputAssign, inputStartDate, inputEndDate, inputDescription]);
+  }, [
+    inputTitle,
+    inputAssign,
+    inputStartDate,
+    inputEndDate,
+    inputTaskType,
+    inputDescription,
+  ]);
 
   //-----------------------------------------------
 
@@ -82,13 +81,6 @@ export const TaskPage: React.FC = () => {
 
   //-----------------------------------------------
 
-  //Input Check
-  const handleCkeckEnable = () => setAnalysisChecked(!analysisChecked);
-  const handleProblemCkeckEnable = () => setProblemChecked(!problemChecked);
-  const handleSupportCkeckEnable = () => setSupportChecked(!supportChecked);
-  const handleTestCkeckEnable = () => setTestChecked(!testChecked);
-  //-----------------------------------------------
-
   //Input Description
   const handleInputDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -96,64 +88,57 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
   //Functions:
 
+  //Clear fields
+  const handleClickCreateButtonCleanForm = () => {
+    setInputTitle('');
+    setInputAssign('');
+    setInputStartDate('');
+    setInputEndDate('');
+    setInputDescription('');
+    setInputTaskType(TaskType.none);
+  };
+
+  //-----------------------------------------------
   //Active submit button
-  const activeCreateTaskButton = () => {
+  const handleSubmitFormOnClickCreateTaskButton = () => {
     const dataForm: Task = {
       Title: inputTitle,
       Assign: inputAssign,
       StartDate: inputStartDate,
       EndDate: inputEndDate,
-      TaskType: getTaskType(
-        analysisChecked,
-        problemChecked,
-        supportChecked,
-        testChecked,
-      ),
+      TaskType: inputTaskType,
       Description: inputDescription,
     };
 
-    const handleClickCreateButton = () => {
-      setInputTitle('');
-      setInputAssign('');
-      setInputStartDate('');
-      setInputEndDate('');
-      setInputDescription('');
-      setAnalysisChecked(false);
-      setProblemChecked(false);
-      setSupportChecked(false);
-      setTestChecked(false);
-    };
+    let emptyFields: string = '';
 
-    if (createTaskActive === false) {
-      alert('Preencha todos os campos');
-    } else {
-      handleClickCreateButton();
-      console.log(dataForm);
+    if (inputTitle === '') {
+      emptyFields += ' | Título | ';
     }
-  };
-
-  //Check Definition
-  const getTaskType = (
-    analysisChecked: boolean,
-    problemChecked: boolean,
-    supportChecked: boolean,
-    testChecked: boolean,
-  ): TaskType => {
-    if (analysisChecked) {
-      return TaskType.Analysis;
-    } else if (problemChecked) {
-      return TaskType.Problem;
-    } else if (supportChecked) {
-      return TaskType.Support;
-    } else if (testChecked) {
-      return TaskType.Test;
+    if (inputAssign === '') {
+      emptyFields += ' | Responsável | ';
+    }
+    if (inputStartDate === '') {
+      emptyFields += ' | Data de criação | ';
+    }
+    if (inputEndDate === '') {
+      emptyFields += ' | Data limite | ';
+    }
+    if (inputTaskType === TaskType.none) {
+      emptyFields += ' | Selecione um tipo | ';
+    }
+    if (inputDescription === '') {
+      emptyFields += ' | Descrição | ';
+    }
+    if (emptyFields !== '') {
+      alert(emptyFields);
     } else {
-      return TaskType.Empty;
+      handleClickCreateButtonCleanForm();
     }
   };
 
   //-----------------------------------------------
-
+  1;
   return (
     <>
       <S.TitleContainer>
@@ -193,39 +178,43 @@ export const TaskPage: React.FC = () => {
           <ul>
             <li style={{ color: '#8ED05A' }}>
               <input
-                type="checkbox"
-                value={TaskType.Analysis}
-                checked={analysisChecked}
-                onChange={handleCkeckEnable}
+                type="radio"
+                name="TaskType"
+                value={inputTaskType}
+                checked={inputTaskType === TaskType.Analysis}
+                onChange={() => setInputTaskType(TaskType.Analysis)}
               />
               Análise
             </li>
 
             <li style={{ color: '#EB9734' }}>
               <input
-                type="checkbox"
-                value={TaskType.Problem}
-                checked={problemChecked}
-                onChange={handleProblemCkeckEnable}
+                type="radio"
+                name="TaskType"
+                value={inputTaskType}
+                checked={inputTaskType === TaskType.Problem}
+                onChange={() => setInputTaskType(TaskType.Problem)}
               />
               Problema
             </li>
 
             <li style={{ color: '#1641D9' }}>
               <input
-                type="checkbox"
-                value={TaskType.Support}
-                checked={supportChecked}
-                onChange={handleSupportCkeckEnable}
+                type="radio"
+                name="TaskType"
+                value={inputTaskType}
+                checked={inputTaskType === TaskType.Support}
+                onChange={() => setInputTaskType(TaskType.Support)}
               />
               Suporte
             </li>
             <li style={{ color: '#b80202' }}>
               <input
-                type="checkbox"
-                value={TaskType.Test}
-                checked={testChecked}
-                onChange={handleTestCkeckEnable}
+                type="radio"
+                name="TaskType"
+                value={inputTaskType}
+                checked={inputTaskType === TaskType.Test}
+                onChange={() => setInputTaskType(TaskType.Test)}
               />
               Teste
             </li>
@@ -247,8 +236,7 @@ export const TaskPage: React.FC = () => {
           type="submit"
           isActive={isActive}
           onClick={() => {
-            //Change to send the data
-            activeCreateTaskButton();
+            handleSubmitFormOnClickCreateTaskButton();
           }}
         >
           {isActive ? 'Criar Tarefa' : 'Preencha os dados'}
