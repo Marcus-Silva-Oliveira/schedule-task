@@ -1,6 +1,12 @@
 // import { Link } from 'react-router-dom';
 
-import React from 'react';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import menu from '../../assets/Icons/navbar/menu.svg';
+import arrowDown from '../../assets/Icons/navbar/keyboard_arrow_down.png';
+import arrowUp from '../../assets/Icons/navbar/keyboard_arrow_up.png';
+
 import * as S from './styles';
 
 export const NavBar: React.FC = () => {
@@ -16,26 +22,50 @@ export const NavBar: React.FC = () => {
   ];
   const nameWeekDay = weekDay[date.getDay()];
 
-  return (
-    <S.NavContainer>
-      <S.NavButtonsContainer>
-        <S.MenuButton>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            width="26px"
-            fill="#ffffff"
-          >
-            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-          </svg>
-        </S.MenuButton>
-        <S.ButtonAddTask>Adicionar tarefa</S.ButtonAddTask>
-      </S.NavButtonsContainer>
+  type ValuePiece = Date | null;
+  type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-      <S.ActualDateContainer>
-        <S.ActualDayString>{nameWeekDay}</S.ActualDayString>
-        <S.ActualDayNumber>{date.getDate()}</S.ActualDayNumber>
-      </S.ActualDateContainer>
-    </S.NavContainer>
+  const [value, onChange] = useState<Value>(new Date());
+  const [activatedCalendar, setActivatedCalendar] = useState(true);
+  const [activatedMenu, setActivatedMenu] = useState(false);
+
+  const activeCalendar: boolean = activatedCalendar;
+  const activeMenu: boolean = activatedMenu;
+
+  const handleClickArrowToActiveViewCalendar = () => {
+    setActivatedCalendar(!activatedCalendar);
+  };
+
+  const handleClickMenuButton = () => {
+    setActivatedMenu(!activatedMenu);
+  };
+
+  return (
+    <>
+      <S.NavContainer>
+        <div>
+          <button onClick={handleClickMenuButton}>
+            <img src={menu} alt="icone do menu" />
+          </button>
+
+          <button>Adicionar tarefa</button>
+        </div>
+
+        <S.ActualDateContainer>
+          <span>{nameWeekDay}</span>
+          <span>{date.getDate()}</span>
+        </S.ActualDateContainer>
+      </S.NavContainer>
+      <S.MenuContainer activeMenu={activeMenu}>
+        <button>Taredas concluídas</button>
+        <button>Tarefas excluídas</button>
+      </S.MenuContainer>
+      <S.CalendarContainer activeCalendar={activeCalendar}>
+        <Calendar onChange={onChange} value={value} />
+        <button onClick={handleClickArrowToActiveViewCalendar}>
+          {activeCalendar ? <img src={arrowDown} /> : <img src={arrowUp} />}
+        </button>
+      </S.CalendarContainer>
+    </>
   );
 };
