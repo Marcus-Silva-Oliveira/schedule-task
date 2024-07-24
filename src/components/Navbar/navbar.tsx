@@ -28,7 +28,7 @@ export const NavBar: React.FC = () => {
   const [activatedCalendar, setActivatedCalendar] = useState(true);
   const [activatedMenu, setActivatedMenu] = useState(false);
 
-  const handleClickArrowToActiveViewCalendar = () =>
+  const handleClickToShowCalendar = () =>
     setActivatedCalendar(!activatedCalendar);
 
   const handleClickMenuButton = () => setActivatedMenu(!activatedMenu);
@@ -64,7 +64,7 @@ export const NavBar: React.FC = () => {
       </S.MenuContainer>
       <S.CalendarContainer activeCalendar={activatedCalendar}>
         <Calendar onChange={onChange} value={value} />
-        <button onClick={handleClickArrowToActiveViewCalendar}>
+        <button onClick={handleClickToShowCalendar}>
           <img src={pushButton} />
         </button>
       </S.CalendarContainer>
