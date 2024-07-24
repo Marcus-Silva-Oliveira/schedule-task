@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vh;
+  position: fixed;
+  z-index: -1;
+`;
+
 export const NavContainer = styled.nav`
   display: flex;
   align-items: center;
@@ -115,8 +124,8 @@ export const CalendarContainer = styled.div<activeCalendarProps>`
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 8%;
-  z-index: -1;
+  top: 6%;
+  z-index: 0;
   width: 100%;
   transform: translateY(${(props) => (props.activeCalendar ? '-86%' : '0')});
   transition: transform 0.2s ease;

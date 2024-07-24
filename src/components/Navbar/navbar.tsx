@@ -28,15 +28,18 @@ export const NavBar: React.FC = () => {
   const [activatedCalendar, setActivatedCalendar] = useState(true);
   const [activatedMenu, setActivatedMenu] = useState(false);
 
-  const activeCalendar: boolean = activatedCalendar;
-  const activeMenu: boolean = activatedMenu;
-
-  const handleClickArrowToActiveViewCalendar = () => {
+  const handleClickArrowToActiveViewCalendar = () =>
     setActivatedCalendar(!activatedCalendar);
-  };
 
-  const handleClickMenuButton = () => {
-    setActivatedMenu(!activatedMenu);
+  const handleClickMenuButton = () => setActivatedMenu(!activatedMenu);
+
+  const handleClickBodyContainer = () => {
+    if (activatedCalendar === false) {
+      setActivatedCalendar(!activatedCalendar);
+    }
+    if (activatedMenu === true) {
+      setActivatedMenu(!activatedMenu);
+    }
   };
 
   return (
@@ -55,16 +58,17 @@ export const NavBar: React.FC = () => {
           <span>{date.getDate()}</span>
         </S.ActualDateContainer>
       </S.NavContainer>
-      <S.MenuContainer activeMenu={activeMenu}>
-        <button>Taredas concluídas</button>
+      <S.MenuContainer activeMenu={activatedMenu}>
+        <button>Tarefas concluídas</button>
         <button>Tarefas excluídas</button>
       </S.MenuContainer>
-      <S.CalendarContainer activeCalendar={activeCalendar}>
+      <S.CalendarContainer activeCalendar={activatedCalendar}>
         <Calendar onChange={onChange} value={value} />
         <button onClick={handleClickArrowToActiveViewCalendar}>
           <img src={pushButton} />
         </button>
       </S.CalendarContainer>
+      <S.BodyContainer onClick={handleClickBodyContainer} />
     </>
   );
 };
