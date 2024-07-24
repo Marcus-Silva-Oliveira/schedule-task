@@ -9,7 +9,7 @@ export const NavContainer = styled.nav`
   z-index: 1;
   background-color: #ffffff;
   width: 100%;
-  padding: 1rem 1rem;
+  padding: 0.8rem 1rem;
   gap: 1rem;
 
   div {
@@ -63,14 +63,16 @@ export const MenuContainer = styled.div<activeMenuProps>`
   display: ${(props) => (props.activeMenu ? 'flex' : 'none')};
   flex-direction: column;
   border-radius: 8px;
-  background-color: #9e9e9e;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
   gap: 0.5rem;
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   width: 200px;
   height: 200px;
-  margin: 4.3rem 0 0 1rem;
+  margin: 4.2rem 0 0 1rem;
   padding: 0.5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 
   button {
     background-color: #c7c7c7;
@@ -113,21 +115,22 @@ export const CalendarContainer = styled.div<activeCalendarProps>`
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 10%;
-  z-index: -2;
+  top: 8%;
+  z-index: -1;
   width: 100%;
   transform: translateY(${(props) => (props.activeCalendar ? '-86%' : '0')});
   transition: transform 0.2s ease;
   padding: 1rem 1rem 0.5rem 1rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 
   button {
     background-color: transparent;
     border: none;
-    opacity: 1;
     cursor: pointer;
 
     img {
-      width: 40px;
+      margin-top: 1.5rem;
+      width: 110px;
     }
   }
 `;

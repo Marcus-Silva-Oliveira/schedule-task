@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import menu from '../../assets/Icons/navbar/menu.svg';
-import arrowDown from '../../assets/Icons/navbar/keyboard_arrow_down.png';
-import arrowUp from '../../assets/Icons/navbar/keyboard_arrow_up.png';
+import pushButton from '../../assets/Icons/navbar/Push-button.png';
 
 import * as S from './styles';
 
@@ -63,7 +62,7 @@ export const NavBar: React.FC = () => {
       <S.CalendarContainer activeCalendar={activeCalendar}>
         <Calendar onChange={onChange} value={value} />
         <button onClick={handleClickArrowToActiveViewCalendar}>
-          {activeCalendar ? <img src={arrowDown} /> : <img src={arrowUp} />}
+          <img src={pushButton} />
         </button>
       </S.CalendarContainer>
     </>
