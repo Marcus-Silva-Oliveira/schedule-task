@@ -5,24 +5,22 @@ export enum TaskType {
   test,
 }
 
-//TESTE
 export interface Task {
-  userId: number;
-  id: number;
+  id?: number;
   title: string;
-  body: string;
+  assign: string;
+  startDate?: Date | string | number;
+  endDate?: Date | string | number;
+  taskType?: TaskType;
+  description?: string;
 }
 
-// export interface Task {
-//   Title: string;
-//   Assign: string;
-//   StartDate?: Date | string | number;
-//   EndDate?: Date | string | number;
-//   TaskType?: TaskType;
-//   Description?: string;
-// }
-
-export interface TaskInputRequest {
+export interface TaskGetRequest {
   onSuccess?: (data: Task[]) => void;
+  onError?: (error: boolean) => void;
+}
+export interface TaskPostRequest {
+  task: Task;
+  onSuccess?: () => void;
   onError?: (error: boolean) => void;
 }

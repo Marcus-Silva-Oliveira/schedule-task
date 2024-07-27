@@ -9,7 +9,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route index element={<ScheduleScreen />} />
-        <Route path="about" element={<TaskPage />} />
+        <Route path="task" element={<TaskPage />} />
       </Routes>
     </BrowserRouter>
   );
