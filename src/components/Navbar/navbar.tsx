@@ -2,8 +2,14 @@
 
 import React from 'react';
 import * as S from './styles';
+import { useNavigate } from 'react-router-dom';
 
 export const NavBar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/task');
+  };
   const date: Date = new Date();
   const weekDay = [
     'Domingo',
@@ -29,7 +35,9 @@ export const NavBar: React.FC = () => {
             <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
           </svg>
         </S.MenuButton>
-        <S.ButtonAddTask>Adicionar tarefa</S.ButtonAddTask>
+        <S.ButtonAddTask onClick={handleClick}>
+          Adicionar tarefa
+        </S.ButtonAddTask>
       </S.NavButtonsContainer>
 
       <S.ActualDateContainer>
