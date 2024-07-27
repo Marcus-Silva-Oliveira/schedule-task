@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import TaskApi from '../../api/task/api';
 import { Task } from '../../api/task/type';
-import { TaskComponent } from '../../components/taskcomponent/taskcomponent';
+import { TaskComponent } from '../../components/taskcomponent';
 
 const truncateString = (title: string, length: number): string => {
   if (title.length <= length) return title;
