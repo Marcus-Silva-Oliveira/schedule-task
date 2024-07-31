@@ -4,6 +4,7 @@ export const TitleContainer = styled.section`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 4.5rem;
 
   h1 {
     font-size: 24px;
@@ -111,7 +112,6 @@ export const DescritionContainer = styled.section`
     border: none;
     border-radius: 8px;
     min-height: 15rem;
-    max-height: 22rem;
     min-width: 100%;
     max-width: 100%;
     background-color: #eeeeee;

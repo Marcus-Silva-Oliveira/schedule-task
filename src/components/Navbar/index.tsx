@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
 import menu from '../../assets/Icons/navbar/menu.svg';
-import pushButton from '../../assets/Icons/navbar/Push-button.png';
-
+import { DatePickerComponent } from '../datepicker';
 import * as S from './styles';
 
 export const NavBar: React.FC = () => {
@@ -14,6 +13,8 @@ export const NavBar: React.FC = () => {
   const handleClick = () => {
     navigate('/task');
   };
+
+  //----------------------------------------------------------------
 
   const date: Date = new Date();
   const weekDay = [
@@ -27,25 +28,22 @@ export const NavBar: React.FC = () => {
   ];
   const nameWeekDay = weekDay[date.getDay()];
 
-  type ValuePiece = Date | null;
-  type Value = ValuePiece | [ValuePiece, ValuePiece];
+  //----------------------------------------------------------------
 
-  const [activatedCalendar, setActivatedCalendar] = useState(true);
   const [activatedMenu, setActivatedMenu] = useState(false);
-
-  const handleClickToShowCalendar = () =>
-    setActivatedCalendar(!activatedCalendar);
 
   const handleClickMenuButton = () => setActivatedMenu(!activatedMenu);
 
   const handleClickBodyContainer = () => {
-    if (activatedCalendar === false) {
-      setActivatedCalendar(!activatedCalendar);
-    }
+    // if (activatedCalendar === false) {
+    //   setActivatedCalendar(!activatedCalendar);
+    // }
     if (activatedMenu === true) {
       setActivatedMenu(!activatedMenu);
     }
   };
+
+  //----------------------------------------------------------------
 
   return (
     <>
@@ -67,11 +65,7 @@ export const NavBar: React.FC = () => {
         <button>Tarefas concluídas</button>
         <button>Tarefas excluídas</button>
       </S.MenuContainer>
-      <S.CalendarContainer activeCalendar={activatedCalendar}>
-        <button onClick={handleClickToShowCalendar}>
-          <img src={pushButton} />
-        </button>
-      </S.CalendarContainer>
+      <DatePickerComponent />
       <S.BodyContainer onClick={handleClickBodyContainer} />
     </>
   );

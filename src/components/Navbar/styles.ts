@@ -65,6 +65,7 @@ export const NavContainer = styled.nav`
     }
   }
 `;
+
 interface activeMenuProps {
   activeMenu: boolean;
 }
@@ -112,34 +113,5 @@ export const ActualDateContainer = styled.div`
   span:last-child {
     font-size: 48px;
     line-height: 1;
-  }
-`;
-
-interface activeCalendarProps {
-  activeCalendar: boolean;
-}
-export const CalendarContainer = styled.div<activeCalendarProps>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 6%;
-  z-index: 0;
-  width: 100%;
-  transform: translateY(${(props) => (props.activeCalendar ? '-86%' : '0')});
-  transition: transform 0.2s ease;
-  padding: 1rem 1rem 0.5rem 1rem;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-
-  button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-
-    img {
-      margin-top: 1.5rem;
-      width: 110px;
-    }
   }
 `;

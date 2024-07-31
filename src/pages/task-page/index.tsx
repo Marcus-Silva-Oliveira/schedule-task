@@ -76,11 +76,6 @@ export const TaskPage: React.FC = () => {
     setInputEndDate(event.target.value);
   //-----------------------------------------------
 
-  //Global variables
-  const isActive: boolean = createTaskActive;
-
-  //-----------------------------------------------
-
   //Input Description
   const handleInputDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -234,12 +229,12 @@ export const TaskPage: React.FC = () => {
       <S.ButtonsContainer>
         <S.CreateTaskButton
           type="submit"
-          isActive={isActive}
+          isActive={createTaskActive}
           onClick={() => {
             handleSubmitFormOnClickCreateTaskButton();
           }}
         >
-          {isActive ? 'Criar Tarefa' : 'Preencha os dados'}
+          {createTaskActive ? 'Criar Tarefa' : 'Preencha os dados'}
         </S.CreateTaskButton>
       </S.ButtonsContainer>
     </>
