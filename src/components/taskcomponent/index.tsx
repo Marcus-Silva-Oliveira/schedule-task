@@ -1,9 +1,9 @@
 // import { useState } from "react";
 
 import * as S from './styles';
-import DragIndicator from '../../assets/Icons/TaskComponent/drag_indicator.svg';
-import Check from '../../assets/Icons/TaskComponent/check.svg';
-import Delete from '../../assets/Icons/TaskComponent/delete.svg';
+import DragIndicator from '../../assets/Icons/taskcomponent/drag_indicator.svg';
+import Check from '../../assets/Icons/taskcomponent/check.svg';
+import Delete from '../../assets/Icons/taskcomponent/delete.svg';
 // import { ReactElement } from 'react';
 
 enum TaskType {
