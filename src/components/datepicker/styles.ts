@@ -9,6 +9,7 @@ export const CalendarContainer = styled.div<activeCalendarProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
   position: fixed;
   top: 6%;
   z-index: 0;

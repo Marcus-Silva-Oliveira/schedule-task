@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { format } from 'date-fns';
 
 import * as S from './styles';
 
@@ -136,107 +135,109 @@ export const TaskPage: React.FC = () => {
   1;
   return (
     <>
-      <S.TitleContainer>
-        <h1>Tarefa</h1>
-      </S.TitleContainer>
-      <S.InputContainer>
-        <input
-          placeholder="Título:"
-          type="text"
-          value={inputTitle}
-          onChange={handleInputTitleChange}
-        />
-        <input
-          placeholder="Responsável:"
-          type="text"
-          value={inputAssign}
-          onChange={handleInputAssignChange}
-        />
-      </S.InputContainer>
-
-      <S.DateAndTypeContainer>
-        <div>
-          <span>Data de criação:</span>
+      <S.BodyContainer>
+        <S.TitleContainer>
+          <h1>Tarefa</h1>
+        </S.TitleContainer>
+        <S.InputContainer>
           <input
-            type="date"
-            value={inputStartDate}
-            onChange={handleInputStartDate}
+            placeholder="Título:"
+            type="text"
+            value={inputTitle}
+            onChange={handleInputTitleChange}
           />
-          <span>Data limite:</span>
           <input
-            type="date"
-            value={inputEndDate}
-            onChange={handleInputEndDate}
+            placeholder="Responsável:"
+            type="text"
+            value={inputAssign}
+            onChange={handleInputAssignChange}
           />
-        </div>
-        <div>
-          <ul>
-            <li style={{ color: '#8ED05A' }}>
-              <input
-                type="radio"
-                name="TaskType"
-                value={inputTaskType}
-                checked={inputTaskType === TaskType.Analysis}
-                onChange={() => setInputTaskType(TaskType.Analysis)}
-              />
-              Análise
-            </li>
+        </S.InputContainer>
 
-            <li style={{ color: '#EB9734' }}>
-              <input
-                type="radio"
-                name="TaskType"
-                value={inputTaskType}
-                checked={inputTaskType === TaskType.Problem}
-                onChange={() => setInputTaskType(TaskType.Problem)}
-              />
-              Problema
-            </li>
+        <S.DateAndTypeContainer>
+          <div>
+            <span>Data de criação:</span>
+            <input
+              type="date"
+              value={inputStartDate}
+              onChange={handleInputStartDate}
+            />
+            <span>Data limite:</span>
+            <input
+              type="date"
+              value={inputEndDate}
+              onChange={handleInputEndDate}
+            />
+          </div>
+          <div>
+            <ul>
+              <li style={{ color: '#8ED05A' }}>
+                <input
+                  type="radio"
+                  name="TaskType"
+                  value={inputTaskType}
+                  checked={inputTaskType === TaskType.Analysis}
+                  onChange={() => setInputTaskType(TaskType.Analysis)}
+                />
+                Análise
+              </li>
 
-            <li style={{ color: '#1641D9' }}>
-              <input
-                type="radio"
-                name="TaskType"
-                value={inputTaskType}
-                checked={inputTaskType === TaskType.Support}
-                onChange={() => setInputTaskType(TaskType.Support)}
-              />
-              Suporte
-            </li>
-            <li style={{ color: '#b80202' }}>
-              <input
-                type="radio"
-                name="TaskType"
-                value={inputTaskType}
-                checked={inputTaskType === TaskType.Test}
-                onChange={() => setInputTaskType(TaskType.Test)}
-              />
-              Teste
-            </li>
-          </ul>
-        </div>
-      </S.DateAndTypeContainer>
+              <li style={{ color: '#EB9734' }}>
+                <input
+                  type="radio"
+                  name="TaskType"
+                  value={inputTaskType}
+                  checked={inputTaskType === TaskType.Problem}
+                  onChange={() => setInputTaskType(TaskType.Problem)}
+                />
+                Problema
+              </li>
 
-      <S.DescritionContainer>
-        <h2>Descrição:</h2>
+              <li style={{ color: '#1641D9' }}>
+                <input
+                  type="radio"
+                  name="TaskType"
+                  value={inputTaskType}
+                  checked={inputTaskType === TaskType.Support}
+                  onChange={() => setInputTaskType(TaskType.Support)}
+                />
+                Suporte
+              </li>
+              <li style={{ color: '#b80202' }}>
+                <input
+                  type="radio"
+                  name="TaskType"
+                  value={inputTaskType}
+                  checked={inputTaskType === TaskType.Test}
+                  onChange={() => setInputTaskType(TaskType.Test)}
+                />
+                Teste
+              </li>
+            </ul>
+          </div>
+        </S.DateAndTypeContainer>
 
-        <textarea
-          value={inputDescription}
-          onChange={handleInputDescriptionChange}
-        />
-      </S.DescritionContainer>
+        <S.DescritionContainer>
+          <h2>Descrição:</h2>
 
-      <S.ButtonsContainer>
-        <S.CreateTaskButton
-          type="submit"
-          isActive={createTaskActive}
-          onClick={() => {
-            handleSubmitFormOnClickCreateTaskButton();
-          }}
-        >
-          {createTaskActive ? 'Criar Tarefa' : 'Preencha os dados'}
-        </S.CreateTaskButton>
-      </S.ButtonsContainer>
+          <textarea
+            value={inputDescription}
+            onChange={handleInputDescriptionChange}
+          />
+        </S.DescritionContainer>
+
+        <S.ButtonsContainer>
+          <S.CreateTaskButton
+            type="submit"
+            isActive={createTaskActive}
+            onClick={() => {
+              handleSubmitFormOnClickCreateTaskButton();
+            }}
+          >
+            {createTaskActive ? 'Criar Tarefa' : 'Preencha os dados'}
+          </S.CreateTaskButton>
+        </S.ButtonsContainer>
+      </S.BodyContainer>
     </>
   );
 };

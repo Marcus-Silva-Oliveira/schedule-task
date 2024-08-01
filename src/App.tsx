@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route index element={<ScheduleScreen />} />
+        <Route index path="scheduleScreen" element={<ScheduleScreen />} />
         <Route path="task" element={<TaskPage />} />
       </Routes>
     </BrowserRouter>

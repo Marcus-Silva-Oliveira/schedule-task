@@ -27,42 +27,8 @@ export const NavContainer = styled.nav`
     align-items: center;
     gap: 0.5rem;
   }
-
-  button:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #9e9e9e;
-    padding: 0.7rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(1.1);
-    }
-
-    img {
-      width: auto;
-    }
-  }
-
-  button:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1294f2;
-    padding: 7px;
-    border: none;
-    border-radius: 8px;
-    height: 2.87rem;
-    font-size: 16px;
-    line-height: 1;
-    width: fit-content;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(1.1);
-    }
+  img {
+    width: auto;
   }
 `;
 
@@ -73,29 +39,17 @@ export const MenuContainer = styled.div<activeMenuProps>`
   display: ${(props) => (props.activeMenu ? 'flex' : 'none')};
   flex-direction: column;
   border-radius: 8px;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
   gap: 0.5rem;
   position: fixed;
   z-index: 1;
-  width: 200px;
+  width: auto;
   height: 200px;
   margin: 4.2rem 0 0 1rem;
   padding: 0.5rem;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-
-  button {
-    background-color: #c7c7c7;
-    border: none;
-    border-radius: 8px;
-    height: 3rem;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(1.1);
-    }
-  }
 `;
 
 export const ActualDateContainer = styled.div`

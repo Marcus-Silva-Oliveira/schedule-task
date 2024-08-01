@@ -4,23 +4,7 @@ import * as S from './styles';
 import DragIndicator from '../../assets/Icons/taskcomponent/drag_indicator.svg';
 import Check from '../../assets/Icons/taskcomponent/check.svg';
 import Delete from '../../assets/Icons/taskcomponent/delete.svg';
-// import { ReactElement } from 'react';
-
-enum TaskType {
-  Acquistion,
-  Collect,
-  Delivery,
-}
-
-export interface Task {
-  id?: number;
-  Title?: string;
-  Assign?: string;
-  startDate?: Date;
-  endDate?: Date;
-  type?: TaskType;
-  description?: string;
-}
+import { TaskType, Task } from './types';
 
 export const TaskComponent: React.FC<Task> = (props) => {
   const handleClickDone = (): void => {
