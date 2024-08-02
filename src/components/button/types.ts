@@ -1,5 +1,5 @@
 export interface ButtonProps {
-  content?: string;
+  content?: React.ReactNode;
   onClick: Function;
   background?: string;
   color?: string;
