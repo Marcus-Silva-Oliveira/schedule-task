@@ -2,33 +2,18 @@ import React, { useEffect, useState } from 'react';
 // import { format } from 'date-fns';
 
 import * as S from './styles';
+import { Task, TaskType } from '../../api/task/type';
+import TaskApi from '../../api/task/api';
 
 //-----------------------------------------------
-
-//Types
-
-enum TaskType {
-  Analysis = 'Analysis',
-  Problem = 'Problem',
-  Support = 'Support',
-  Test = 'Test',
-  none = 'none',
-}
-
-interface Task {
-  Title: string;
-  Assign: string;
-  StartDate?: Date | string | number;
-  EndDate?: Date | string | number;
-  TaskType?: TaskType;
-  Description?: string;
-}
 
 //-----------------------------------------------
 
 export const TaskPage: React.FC = () => {
   // const currentDate: string | Date | number = new Date();
   // const date = format(currentDate, 'dd-MM-yyyy');
+
+  const { saveTask } = TaskApi();
 
   //useState
   const [inputTitle, setInputTitle] = useState('');
@@ -102,12 +87,12 @@ export const TaskPage: React.FC = () => {
   //Active submit button
   const handleSubmitFormOnClickCreateTaskButton = () => {
     const dataForm: Task = {
-      Title: inputTitle,
-      Assign: inputAssign,
-      StartDate: inputStartDate,
-      EndDate: inputEndDate,
-      TaskType: inputTaskType,
-      Description: inputDescription,
+      title: inputTitle,
+      assign: inputAssign,
+      startDate: inputStartDate,
+      endDate: inputEndDate,
+      taskType: inputTaskType,
+      description: inputDescription,
     };
 
     let emptyFields: string = '';
@@ -133,6 +118,15 @@ export const TaskPage: React.FC = () => {
     if (emptyFields !== '') {
       alert(emptyFields);
     } else {
+      saveTask({
+        task: dataForm,
+        onSuccess: () => {
+          alert('Salvou a nova Task');
+        },
+        onError: () => {
+          alert('Ocorreu um erro');
+        },
+      });
       handleClickCreateButtonCleanForm();
     }
   };
@@ -181,8 +175,8 @@ export const TaskPage: React.FC = () => {
                 type="radio"
                 name="TaskType"
                 value={inputTaskType}
-                checked={inputTaskType === TaskType.Analysis}
-                onChange={() => setInputTaskType(TaskType.Analysis)}
+                checked={inputTaskType === TaskType.analysis}
+                onChange={() => setInputTaskType(TaskType.analysis)}
               />
               Análise
             </li>
@@ -192,8 +186,8 @@ export const TaskPage: React.FC = () => {
                 type="radio"
                 name="TaskType"
                 value={inputTaskType}
-                checked={inputTaskType === TaskType.Problem}
-                onChange={() => setInputTaskType(TaskType.Problem)}
+                checked={inputTaskType === TaskType.problem}
+                onChange={() => setInputTaskType(TaskType.problem)}
               />
               Problema
             </li>
@@ -203,8 +197,8 @@ export const TaskPage: React.FC = () => {
                 type="radio"
                 name="TaskType"
                 value={inputTaskType}
-                checked={inputTaskType === TaskType.Support}
-                onChange={() => setInputTaskType(TaskType.Support)}
+                checked={inputTaskType === TaskType.support}
+                onChange={() => setInputTaskType(TaskType.support)}
               />
               Suporte
             </li>
@@ -213,8 +207,8 @@ export const TaskPage: React.FC = () => {
                 type="radio"
                 name="TaskType"
                 value={inputTaskType}
-                checked={inputTaskType === TaskType.Test}
-                onChange={() => setInputTaskType(TaskType.Test)}
+                checked={inputTaskType === TaskType.test}
+                onChange={() => setInputTaskType(TaskType.test)}
               />
               Teste
             </li>
