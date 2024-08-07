@@ -189,8 +189,8 @@ export const TaskPage: React.FC = () => {
                   type="radio"
                   name="TaskType"
                   value={inputTaskType}
-                  checked={inputTaskType === TaskType.Analysis}
-                  onChange={() => setInputTaskType(TaskType.Analysis)}
+                  checked={inputTaskType === TaskType.analysis}
+                  onChange={() => setInputTaskType(TaskType.analysis)}
                 />
                 Análise
               </li>
@@ -211,8 +211,8 @@ export const TaskPage: React.FC = () => {
                   type="radio"
                   name="TaskType"
                   value={inputTaskType}
-                  checked={inputTaskType === TaskType.Support}
-                  onChange={() => setInputTaskType(TaskType.Support)}
+                  checked={inputTaskType === TaskType.support}
+                  onChange={() => setInputTaskType(TaskType.support)}
                 />
                 Suporte
               </li>
@@ -221,8 +221,8 @@ export const TaskPage: React.FC = () => {
                   type="radio"
                   name="TaskType"
                   value={inputTaskType}
-                  checked={inputTaskType === TaskType.Test}
-                  onChange={() => setInputTaskType(TaskType.Test)}
+                  checked={inputTaskType === TaskType.test}
+                  onChange={() => setInputTaskType(TaskType.test)}
                 />
                 Teste
               </li>
