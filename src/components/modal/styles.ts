@@ -4,8 +4,9 @@ export const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   z-index: 10;
+  width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
@@ -13,8 +14,10 @@ export const ContentContainer = styled.div`
 
 export const DivsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 1rem 0 1rem;
   gap: 1rem;
   background-color: #ffffff;
   border-radius: 20px;
@@ -26,14 +29,13 @@ export const ImageDiv = styled.div`
   justify-content: center;
   gap: 1rem;
   background-color: #ffffff;
-  /* padding: 1rem; */
   width: auto;
   height: auto;
   border-radius: 20px;
 
   img {
-    width: 450px;
-    border-radius: 20px 0 0 20px;
+    width: 300px;
+    border-radius: 20px 20px 0 0;
   }
 `;
 

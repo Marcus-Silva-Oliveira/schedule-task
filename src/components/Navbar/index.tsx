@@ -3,8 +3,8 @@
 import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import menu from '../../assets/Icons/navbar/menu.svg';
 import { ButtonComponent } from '../button';
+import menu from '../../assets/Icons/navbar/menu.svg';
 import * as S from './styles';
 
 export const NavBar: React.FC = () => {
@@ -59,7 +59,10 @@ export const NavBar: React.FC = () => {
       <S.MenuContainer activeMenu={activatedMenu}>
         <ButtonComponent
           content="Adicionar tarefa"
-          onClick={handleClickCreateTask}
+          onClick={() => {
+            handleClickCreateTask();
+            setActivatedMenu(!activatedMenu);
+          }}
           background="#1294F2"
           color="#ffffff"
           minWidth="10.06rem"
