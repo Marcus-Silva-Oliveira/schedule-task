@@ -1,8 +1,9 @@
 export enum TaskType {
   analysis,
   problem,
-  suport,
+  support,
   test,
+  none,
 }
 
 export interface Task {
