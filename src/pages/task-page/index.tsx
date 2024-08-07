@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import * as S from './styles';
+import { ButtonComponent } from '../../components/button';
+import { useNavigate } from 'react-router-dom';
+import { ModalComponent } from '../../components/modal';
+import { ModalProps } from '../../components/modal/types';
 
 //-----------------------------------------------
 
@@ -26,8 +30,7 @@ interface Task {
 //-----------------------------------------------
 
 export const TaskPage: React.FC = () => {
-  // const currentDate: string | Date | number = new Date();
-  // const date = format(currentDate, 'dd-MM-yyyy');
+  const navigate = useNavigate();
 
   //useState
   const [inputTitle, setInputTitle] = useState('');
@@ -37,6 +40,8 @@ export const TaskPage: React.FC = () => {
   const [inputDescription, setInputDescription] = useState('');
   const [inputTaskType, setInputTaskType] = useState<TaskType>(TaskType.none);
   const [createTaskActive, setCreateTaskActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [emptyFields, setEmptyFields] = useState('');
 
   //useEffect
   useEffect(() => {
@@ -73,6 +78,7 @@ export const TaskPage: React.FC = () => {
   //Input EndDate
   const handleInputEndDate = (event: React.ChangeEvent<HTMLInputElement>) =>
     setInputEndDate(event.target.value);
+
   //-----------------------------------------------
 
   //Input Description
@@ -92,6 +98,12 @@ export const TaskPage: React.FC = () => {
     setInputTaskType(TaskType.none);
   };
 
+  const handleClickCancelTask = () => {
+    navigate('/scheduleScreen');
+  };
+
+  const handleCloseModal = () => setShowModal(false);
+
   //-----------------------------------------------
   //Active submit button
   const handleSubmitFormOnClickCreateTaskButton = () => {
@@ -107,34 +119,42 @@ export const TaskPage: React.FC = () => {
     let emptyFields: string = '';
 
     if (inputTitle === '') {
-      emptyFields += ' | Título | ';
+      emptyFields += '  Título  ';
     }
     if (inputAssign === '') {
-      emptyFields += ' | Responsável | ';
+      emptyFields += '  Responsável  ';
     }
     if (inputStartDate === '') {
-      emptyFields += ' | Data de criação | ';
+      emptyFields += '  Data de criação  ';
     }
     if (inputEndDate === '') {
-      emptyFields += ' | Data limite | ';
+      emptyFields += '  Data limite  ';
     }
     if (inputTaskType === TaskType.none) {
-      emptyFields += ' | Selecione um tipo | ';
+      emptyFields += '  Selecione um tipo  ';
     }
     if (inputDescription === '') {
-      emptyFields += ' | Descrição | ';
+      emptyFields += '  Descrição  ';
     }
     if (emptyFields !== '') {
-      alert(emptyFields);
+      setEmptyFields(emptyFields);
+      setShowModal(true);
     } else {
       handleClickCreateButtonCleanForm();
     }
   };
 
   //-----------------------------------------------
-  1;
   return (
     <>
+      <ModalComponent
+        title="Ops! Parece que você não preencheu tudo."
+        onClose={handleCloseModal}
+        showModal={showModal ? 'flex' : 'none'}
+        missingFields={emptyFields}
+        content="Entendi"
+        textColor="#CE3535"
+      />
       <S.BodyContainer>
         <S.TitleContainer>
           <h1>Tarefa</h1>
@@ -230,12 +250,16 @@ export const TaskPage: React.FC = () => {
           <S.CreateTaskButton
             type="submit"
             isActive={createTaskActive}
-            onClick={() => {
-              handleSubmitFormOnClickCreateTaskButton();
-            }}
+            onClick={handleSubmitFormOnClickCreateTaskButton}
           >
             {createTaskActive ? 'Criar Tarefa' : 'Preencha os dados'}
           </S.CreateTaskButton>
+          <ButtonComponent
+            content="Cancelar"
+            onClick={handleClickCancelTask}
+            background="#CE3535"
+            color="#ffffff"
+          />
         </S.ButtonsContainer>
       </S.BodyContainer>
     </>

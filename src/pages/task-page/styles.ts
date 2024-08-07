@@ -6,7 +6,7 @@ export const BodyContainer = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 `;
 
 export const TitleContainer = styled.section`
@@ -132,10 +132,11 @@ export const DescritionContainer = styled.section`
 
 export const ButtonsContainer = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
   align-items: center;
   width: 100%;
   margin-bottom: 2rem;
+  padding-right: 1rem;
 `;
 
 interface CreateTaskButtonProps {

@@ -3,4 +3,7 @@ export interface ButtonProps {
   onClick: Function;
   background?: string;
   color?: string;
+  showComponent?: string;
+  fontSize?: string;
+  minWidth?: string;
 }

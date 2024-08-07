@@ -27,21 +27,14 @@ export const NavBar: React.FC = () => {
   //----------------------------------------------------------------
 
   const [activatedMenu, setActivatedMenu] = useState(false);
-  const [activatedAddTaskButton, setActivatedAddTaskButton] = useState(false);
 
   const handleClickMenuButton = () => setActivatedMenu(!activatedMenu);
 
   const handleClickBodyContainer = () =>
     setActivatedMenu(activatedMenu ? false : false);
 
-  const handleClick = (): void => {
-    if (activatedAddTaskButton === false) {
-      navigate('/task');
-      setActivatedAddTaskButton(!activatedAddTaskButton);
-    } else {
-      navigate('/scheduleScreen');
-      setActivatedAddTaskButton(!activatedAddTaskButton);
-    }
+  const handleClickCreateTask = (): void => {
+    navigate('/task');
   };
 
   //----------------------------------------------------------------
@@ -56,13 +49,6 @@ export const NavBar: React.FC = () => {
             background="#9E9E9E"
             color="#ffffff"
           />
-
-          <ButtonComponent
-            content={activatedAddTaskButton ? 'Cancelar' : 'Adicionar tarefa'}
-            onClick={handleClick}
-            background={activatedAddTaskButton ? '#CE3535' : '#1294F2'}
-            color="#000000"
-          />
         </div>
 
         <S.ActualDateContainer>
@@ -72,16 +58,27 @@ export const NavBar: React.FC = () => {
       </S.NavContainer>
       <S.MenuContainer activeMenu={activatedMenu}>
         <ButtonComponent
+          content="Adicionar tarefa"
+          onClick={handleClickCreateTask}
+          background="#1294F2"
+          color="#ffffff"
+          minWidth="10.06rem"
+        />
+
+        <ButtonComponent
           background="#C7C7C7"
           color="#000000"
           content="Tarefas concluídas"
           onClick={() => {}}
+          minWidth="10.06rem"
         />
+
         <ButtonComponent
           background="#C7C7C7"
           color="#000000"
           content="Tarefas exluídas"
           onClick={() => {}}
+          minWidth="10.06rem"
         />
       </S.MenuContainer>
       <S.BodyContainer onClick={handleClickBodyContainer} />
