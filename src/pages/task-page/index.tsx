@@ -103,22 +103,22 @@ export const TaskPage: React.FC = () => {
     let emptyFields: string = '';
 
     if (inputTitle === '') {
-      emptyFields += ' | Título | ';
+      emptyFields += '  Título  ';
     }
     if (inputAssign === '') {
-      emptyFields += ' | Responsável | ';
+      emptyFields += ' - Responsável  ';
     }
     if (inputStartDate === '') {
-      emptyFields += ' | Data de criação | ';
+      emptyFields += ' - Data de criação  ';
     }
     if (inputEndDate === '') {
-      emptyFields += ' | Data limite | ';
+      emptyFields += ' - Data limite  ';
     }
     if (inputTaskType === TaskType.none) {
-      emptyFields += ' | Selecione um tipo | ';
+      emptyFields += ' - Tipo  ';
     }
     if (inputDescription === '') {
-      emptyFields += ' | Descrição | ';
+      emptyFields += ' - Descrição  ';
     }
     if (emptyFields !== '') {
       setEmptyFields(emptyFields);

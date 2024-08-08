@@ -46,7 +46,7 @@ export const NavBar: React.FC = () => {
           <ButtonComponent
             content={<img src={menu} />}
             onClick={handleClickMenuButton}
-            background="#9E9E9E"
+            background="#1294F2"
             color="#ffffff"
           />
         </div>
