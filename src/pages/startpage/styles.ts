@@ -6,7 +6,7 @@ export const Container = styled.section`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  gap: 10rem;
+  gap: 5rem;
 `;
 
 export const TitleContainer = styled.section`
