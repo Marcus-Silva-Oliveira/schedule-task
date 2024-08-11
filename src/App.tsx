@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScheduleScreen from './pages/schedule';
 import { NavBar } from './components/navbar';
 import { TaskPage } from './pages/task-page';
-import Loader from './components/loader';
+import LoaderComponent from './components/loader';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route index element={<ScheduleScreen />} />
         <Route path="task" element={<TaskPage />} />
       </Routes>
-      <Loader />
+      <LoaderComponent />
     </BrowserRouter>
   );
 }

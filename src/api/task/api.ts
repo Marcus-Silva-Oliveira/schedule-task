@@ -3,6 +3,7 @@ import axiosInstance from '../axiosConfig';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import store from '../../store/store';
 import { setTasks } from '../../store/task/slice';
+import { showLoading } from '../../store/base/slice';
 
 const fetchTasks = async (): Promise<Task[]> => {
   const response = await axiosInstance.get('/task');
@@ -18,6 +19,7 @@ const _get = () => {
 };
 
 const saveNewTask = async ({ task }: TaskPostRequest): Promise<Task[]> => {
+  store.dispatch(showLoading(true));
   const response = await axiosInstance.post('/task', task);
   return response.data;
 };
@@ -26,7 +28,11 @@ const _post = () => {
   const queryClient = useQueryClient();
   return useMutation(saveNewTask, {
     onSuccess: () => {
+      store.dispatch(showLoading(false));
       queryClient.invalidateQueries('task');
+    },
+    onError: () => {
+      store.dispatch(showLoading(false));
     },
   });
 };
