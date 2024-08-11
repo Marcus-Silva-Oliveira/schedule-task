@@ -1,19 +1,16 @@
 // import { Link } from 'react-router-dom';
 
+import 'react-calendar/dist/Calendar.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import 'react-calendar/dist/Calendar.css';
+import { ButtonComponent } from '../button';
 import menu from '../../assets/Icons/navbar/menu.svg';
-import pushButton from '../../assets/Icons/navbar/Push-button.png';
-
 import * as S from './styles';
 
 export const NavBar: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/task');
-  };
+  //----------------------------------------------------------------
 
   const date: Date = new Date();
   const weekDay = [
@@ -27,35 +24,31 @@ export const NavBar: React.FC = () => {
   ];
   const nameWeekDay = weekDay[date.getDay()];
 
-  type ValuePiece = Date | null;
-  type Value = ValuePiece | [ValuePiece, ValuePiece];
+  //----------------------------------------------------------------
 
-  const [activatedCalendar, setActivatedCalendar] = useState(true);
   const [activatedMenu, setActivatedMenu] = useState(false);
-
-  const handleClickToShowCalendar = () =>
-    setActivatedCalendar(!activatedCalendar);
 
   const handleClickMenuButton = () => setActivatedMenu(!activatedMenu);
 
-  const handleClickBodyContainer = () => {
-    if (activatedCalendar === false) {
-      setActivatedCalendar(!activatedCalendar);
-    }
-    if (activatedMenu === true) {
-      setActivatedMenu(!activatedMenu);
-    }
+  const handleClickBodyContainer = () =>
+    setActivatedMenu(activatedMenu ? false : false);
+
+  const handleClickCreateTask = (): void => {
+    navigate('/task');
   };
+
+  //----------------------------------------------------------------
 
   return (
     <>
       <S.NavContainer>
         <div>
-          <button onClick={handleClickMenuButton}>
-            <img src={menu} alt="icone do menu" />
-          </button>
-
-          <button onClick={handleClick}>Adicionar tarefa</button>
+          <ButtonComponent
+            content={<img src={menu} />}
+            onClick={handleClickMenuButton}
+            background="#1294F2"
+            color="#ffffff"
+          />
         </div>
 
         <S.ActualDateContainer>
@@ -64,14 +57,33 @@ export const NavBar: React.FC = () => {
         </S.ActualDateContainer>
       </S.NavContainer>
       <S.MenuContainer activeMenu={activatedMenu}>
-        <button>Tarefas concluídas</button>
-        <button>Tarefas excluídas</button>
+        <ButtonComponent
+          content="Adicionar tarefa"
+          onClick={() => {
+            handleClickCreateTask();
+            setActivatedMenu(!activatedMenu);
+          }}
+          background="#1294F2"
+          color="#ffffff"
+          minWidth="10.06rem"
+        />
+
+        <ButtonComponent
+          background="#C7C7C7"
+          color="#000000"
+          content="Tarefas concluídas"
+          onClick={() => {}}
+          minWidth="10.06rem"
+        />
+
+        <ButtonComponent
+          background="#C7C7C7"
+          color="#000000"
+          content="Tarefas exluídas"
+          onClick={() => {}}
+          minWidth="10.06rem"
+        />
       </S.MenuContainer>
-      <S.CalendarContainer activeCalendar={activatedCalendar}>
-        <button onClick={handleClickToShowCalendar}>
-          <img src={pushButton} />
-        </button>
-      </S.CalendarContainer>
       <S.BodyContainer onClick={handleClickBodyContainer} />
     </>
   );

@@ -1,20 +1,25 @@
 import { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import { DatePickerContainer } from './styles';
 
-type ValuePiece = Date | null;
+import pushButton from '../../assets/Icons/navbar/Push-button.png';
+import * as S from './styles';
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+export function DatePickerComponent() {
+  type ValuePiece = Date | null;
 
-function DatePickerComponent() {
+  type Value = ValuePiece | [ValuePiece, ValuePiece];
+
   const [value, onChange] = useState<Value>(new Date());
+  const [activatedCalendar, setActivatedCalendar] = useState(true);
+
+  const handleClickToShowCalendar = () =>
+    setActivatedCalendar(!activatedCalendar);
 
   return (
-    <DatePickerContainer>
-      <Calendar onChange={onChange} value={value} />
-    </DatePickerContainer>
+    <S.CalendarContainer activeCalendar={activatedCalendar}>
+      <S.ShowCalendar onChange={onChange} value={value} />
+      <button onClick={handleClickToShowCalendar}>
+        <img src={pushButton} />
+      </button>
+    </S.CalendarContainer>
   );
 }
-
-export default DatePickerComponent;

@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 
+export const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+`;
+
 export const TitleContainer = styled.section`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 4.5rem;
 
   h1 {
     font-size: 24px;
@@ -111,7 +121,6 @@ export const DescritionContainer = styled.section`
     border: none;
     border-radius: 8px;
     min-height: 15rem;
-    max-height: 22rem;
     min-width: 100%;
     max-width: 100%;
     background-color: #eeeeee;
@@ -123,10 +132,11 @@ export const DescritionContainer = styled.section`
 
 export const ButtonsContainer = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
   align-items: center;
   width: 100%;
   margin-bottom: 2rem;
+  padding-right: 1rem;
 `;
 
 interface CreateTaskButtonProps {
