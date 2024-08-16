@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import { ButtonComponent } from '../../components/button';
 import { useNavigate } from 'react-router-dom';
-import { ModalComponent } from '../../components/modal';
 import { Task, TaskType } from '../../api/task/type';
 import TaskApi from '../../api/task/api';
+import { useDispatch } from 'react-redux';
+import { enableModal } from '../../store/base/slice';
+import { ModalsID } from '../../store/types';
 
 //-----------------------------------------------
 
@@ -13,8 +15,8 @@ import TaskApi from '../../api/task/api';
 
 export const TaskPage: React.FC = () => {
   const navigate = useNavigate();
-
   const { saveTask } = TaskApi();
+  const dispatch = useDispatch();
 
   //useState
   const [inputTitle, setInputTitle] = useState('');
@@ -24,8 +26,6 @@ export const TaskPage: React.FC = () => {
   const [inputDescription, setInputDescription] = useState('');
   const [inputTaskType, setInputTaskType] = useState<TaskType>(TaskType.none);
   const [createTaskActive, setCreateTaskActive] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [emptyFields, setEmptyFields] = useState('');
 
   //useEffect
   useEffect(() => {
@@ -86,8 +86,6 @@ export const TaskPage: React.FC = () => {
     navigate('/scheduleScreen');
   };
 
-  const handleCloseModal = () => setShowModal(false);
-
   //-----------------------------------------------
   //Active submit button
   const handleSubmitFormOnClickCreateTaskButton = () => {
@@ -120,9 +118,8 @@ export const TaskPage: React.FC = () => {
     if (inputDescription === '') {
       emptyFields += ' - Descrição  ';
     }
-    if (emptyFields !== '') {
-      setEmptyFields(emptyFields);
-      setShowModal(true);
+    if (emptyFields != '') {
+      dispatch(enableModal(ModalsID.error));
     } else {
       saveTask({
         task: dataForm,
@@ -140,14 +137,6 @@ export const TaskPage: React.FC = () => {
   //-----------------------------------------------
   return (
     <>
-      <ModalComponent
-        title="Ops! Parece que você não preencheu tudo."
-        onClose={handleCloseModal}
-        showModal={showModal ? 'flex' : 'none'}
-        missingFields={emptyFields}
-        content="Entendi"
-        textColor="#CE3535"
-      />
       <S.BodyContainer>
         <S.TitleContainer>
           <h1>Tarefa</h1>
